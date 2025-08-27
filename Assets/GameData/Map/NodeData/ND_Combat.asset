@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c265d251c51f4bf49bc069ba1db80cfb, type: 3}
+  m_Name: ND_Combat
+  m_EditorClassIdentifier: 
+  nodeName: Combate
+  icon: {fileID: 21300000, guid: a59d6029d282ea148bf57966b0c2401e, type: 3}
+  color: {r: 0.6698113, g: 0.009478444, b: 0.009478444, a: 1}
+  weight: 40
