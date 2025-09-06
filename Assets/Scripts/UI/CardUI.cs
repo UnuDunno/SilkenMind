@@ -1,11 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class CardUI : MonoBehaviour
 {
-    [Header("Referências de UI")]
     public Image image;
     public TMP_Text cardName;
     public TMP_Text description;
@@ -34,6 +32,5 @@ public class CardUI : MonoBehaviour
         if (cardInstance == null) return;
 
         cardInstance.UseCard();
-        Destroy(gameObject);
     }
 }

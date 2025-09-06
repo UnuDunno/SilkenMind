@@ -1,26 +1,33 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
-    [Header("Configuração da Teia")]
     public int layers = 5;
     public int nodesPerLayer = 8;
-    public float initialRadius = 850f;
-    public float radiusSpacing = 185f;
+    public float initialRadius = 620f;
+    public float radiusIncrement = 150f;
 
-    [Header("Prefabs")]
     public GameObject nodePrefab;
     public GameObject edgePrefab;
+    public GameObject bossPrefab;
 
-    [Header("Referências")]
     public RectTransform content;
-    public Transform nodesRoot;
-    public Transform connectionsRoot;
+    public RectTransform nodesRoot;
+    public RectTransform connectionsRoot;
+
     public List<NodeData> nodeTypes;
     public NodeData bossNodeData;
 
-    private List<List<Node>> map = new List<List<Node>>();
+    public UnityEvent OnMapCreated;
+
+    public bool Created { get; private set; } = false;
+    private readonly List<List<Node>> map = new List<List<Node>>();
+    public List<List<Node>> Map => map;
+
+    [HideInInspector] public Node bossNode;
 
     void Start()
     {
@@ -29,129 +36,212 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        ClearMap();
-        map.Clear();
+        Created = false;
 
+        ClearMap();
+        Map.Clear();
         AdjustContent();
 
-        for (int j = 0; j < layers; j++)
+        if (connectionsRoot != null)
         {
-            List<Node> layer = new List<Node>();
+            connectionsRoot.SetAsFirstSibling();
+        }
+        if (nodesRoot != null)
+        {
+            nodesRoot.SetAsLastSibling();
+        }
 
-            float radius = initialRadius - j * radiusSpacing;
-            int quantity = nodesPerLayer;
+        // Criação dos nós do mapa
+        float radius, step, angle;
+        for (int layer = 0; layer < layers; layer++)
+        {
+            radius = initialRadius - layer * radiusIncrement;
+            step = 360f / nodesPerLayer;
 
-            for (int i = 0; i < quantity; i++)
+            List<Node> currentLayer = new List<Node>();
+
+            for (int i = 0; i < nodesPerLayer; i++)
             {
-                float angle = (360f / quantity) * i;
-                float rad = angle * Mathf.Deg2Rad;
-
-                Vector3 pos = new Vector3(Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius, 0);
+                angle = step * i * Mathf.Deg2Rad;
+                Vector2 pos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
 
                 GameObject newNode = Instantiate(nodePrefab, nodesRoot);
                 newNode.GetComponent<RectTransform>().anchoredPosition = pos;
 
                 Node node = newNode.GetComponent<Node>();
-                node.Configure(ChooseRandomNodeData());
 
-                layer.Add(node);
+                var nodeData = ChooseNodeDataByWeight();
+                if (nodeData != null)
+                {
+                    node.Configure(nodeData);
+                }
+
+                node.name = $"{(nodeData != null ? nodeData.nodeName : "Nó")}";
+
+                currentLayer.Add(node);
             }
 
-            map.Add(layer);
+            Map.Add(currentLayer);
         }
 
-        GameObject bossObj = Instantiate(nodePrefab, nodesRoot);
-        bossObj.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-
-        Node boss = bossObj.GetComponent<Node>();
-        if (bossNodeData != null)
+        if (bossPrefab != null)
         {
-            boss.Configure(bossNodeData);
-        }
+            GameObject boss = Instantiate(bossPrefab, nodesRoot);
+            boss.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-        for (int j = 0; j < map.Count; j++)
+            bossNode = boss.GetComponent<Node>();
+            if (bossNodeData != null)
+            {
+                bossNode.Configure(bossNodeData);
+            }
+        }
+        else
         {
-            List<Node> currentLayer = map[j];
-            List<Node> nextLayer = (j < map.Count - 1) ? map[j + 1] : new List<Node>() { boss };
+            bossNode = null;
+        }
 
-            for (int i = 0; i < currentLayer.Count; i++)
+        // Criação das linhas do mapa
+        for (int layer = 0; layer < Map.Count; layer++)
+        {
+            List<Node> currentLayer = Map[layer];
+
+            for (int node = 0; node < currentLayer.Count; node++)
             {
-                Node current = currentLayer[i];
-                Node neighbor = currentLayer[(i + 1) % currentLayer.Count];
+                Node a = currentLayer[node];
+                Node b = currentLayer[(node + 1) % currentLayer.Count];
 
-                CreateEdge(current.transform as RectTransform, neighbor.transform as RectTransform);
+                CreateEdge(a.transform as RectTransform, b.transform as RectTransform);
             }
 
-            foreach (Node current in currentLayer)
+            if (layer < Map.Count - 1)
             {
-                Node destiny = nextLayer[Random.Range(0, nextLayer.Count)];
-                current.nextNodes.Add(destiny);
-                CreateEdge(current.transform as RectTransform, destiny.transform as RectTransform);
+                List<Node> nextLayer = Map[layer + 1];
+
+                for (int node = 0; node < currentLayer.Count; node++)
+                {
+                    Node current = currentLayer[node];
+                    Node n1 = nextLayer[node % nextLayer.Count];
+                    Node n2 = nextLayer[(node + 1) % nextLayer.Count];
+
+                    if (!current.nextNodes.Contains(n1))
+                    {
+                        current.nextNodes.Add(n1);
+
+                    }
+                    if (!current.nextNodes.Contains(n2))
+                    {
+                        current.nextNodes.Add(n2);
+                    }
+
+                    CreateEdge(current.transform as RectTransform, n1.transform as RectTransform);
+                    CreateEdge(current.transform as RectTransform, n2.transform as RectTransform);
+                }
+            }
+            else
+            {
+                if (bossNode != null)
+                {
+                    foreach (Node n in currentLayer)
+                    {
+                        if (!n.nextNodes.Contains(bossNode))
+                        {
+                            n.nextNodes.Add(bossNode);
+                        }
+
+                        CreateEdge(n.transform as RectTransform, bossNode.transform as RectTransform);
+                    }
+                }
             }
         }
+
+        Created = true;
+
+        OnMapCreated?.Invoke();
     }
 
-    private void CreateEdge(RectTransform a, RectTransform b)
+    private NodeData ChooseNodeDataByWeight()
     {
-        GameObject line = Instantiate(edgePrefab, connectionsRoot);
-        RectTransform rt = line.GetComponent<RectTransform>();
+        if (nodeTypes == null || nodeTypes.Count == 0) return null;
 
-        Vector2 dir = b.anchoredPosition - a.anchoredPosition;
-        float dist = dir.magnitude;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        rt.anchoredPosition = (a.anchoredPosition + b.anchoredPosition) / 2f;
-        rt.sizeDelta = new Vector2(dist, rt.sizeDelta.y);
-        rt.localRotation = Quaternion.Euler(0, 0, angle);
-    }
-
-    private NodeData ChooseRandomNodeData()
-    {
-        if (nodeTypes == null || nodeTypes.Count == 0)
-        {
-            return null;
-        }
-
-        int total = 0;
-        foreach (var t in nodeTypes)
-        {
-            total += t.weight;
-        }
-
-        int r = Random.Range(0, total);
         int sum = 0;
-
-        foreach (var t in nodeTypes)
+        foreach (NodeData nd in nodeTypes)
         {
-            sum += t.weight;
-            if (r < sum)
+            if (nd != null && nd.weight > 0 && nd.type != NodeData.NodeType.Boss)
             {
-                return t;
+                sum += nd.weight;
             }
+        }
+
+        if (sum <= 0) return nodeTypes[0];
+
+        int rand = Random.Range(0, sum);
+        sum = 0;
+        foreach (NodeData nd in nodeTypes)
+        {
+            if (nd == null || nd.weight <= 0 || nd.type == NodeData.NodeType.Boss)
+            {
+                continue;
+            }
+
+            sum += nd.weight;
+
+            if (rand < sum) return nd;
         }
 
         return nodeTypes[0];
     }
 
+    private void CreateEdge(RectTransform a, RectTransform b)
+    {
+        if (edgePrefab == null || connectionsRoot == null) return;
+
+        GameObject line = Instantiate(edgePrefab, connectionsRoot);
+        RectTransform rt = line.GetComponent<RectTransform>();
+        Image img = line.GetComponent<Image>();
+        if (img != null)
+        {
+            img.raycastTarget = false;
+        }
+
+        Vector2 dir = b.anchoredPosition - a.anchoredPosition;
+        float dist = dir.magnitude;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        rt.anchoredPosition = (a.anchoredPosition + b.anchoredPosition) * 0.5f;
+        rt.sizeDelta = new Vector2(dist, rt.sizeDelta.y);
+        rt.localRotation = Quaternion.Euler(0, 0, angle);
+        rt.SetAsFirstSibling();
+    }
+
     private void ClearMap()
     {
-        for (int i = nodesRoot.childCount - 1; i >= 0; i--)
+        if (nodesRoot != null)
         {
-            DestroyImmediate(nodesRoot.GetChild(i).gameObject);
+            for (int i = nodesRoot.childCount - 1; i >= 0; i--)
+            {
+                Destroy(nodesRoot.GetChild(i).gameObject);
+            }
         }
-        for (int i = connectionsRoot.childCount - 1; i >= 0; i--)
+
+        if (connectionsRoot != null)
         {
-            DestroyImmediate(connectionsRoot.GetChild(i).gameObject);
+            for (int i = connectionsRoot.childCount - 1; i >= 0; i--)
+            {
+                Destroy(connectionsRoot.GetChild(i).gameObject);
+            }
         }
+
+        bossNode = null;
     }
 
     private void AdjustContent()
     {
-        float maxRadius = initialRadius + 50f;
+        if (content == null) return;
+
+        float maxRadius = initialRadius + Mathf.Max(0, layers - 1) * radiusIncrement + 80f;
         float diameter = maxRadius * 2f;
 
         content.sizeDelta = new Vector2(diameter, diameter);
-
         content.anchoredPosition = Vector2.zero;
         content.localScale = Vector3.one;
     }

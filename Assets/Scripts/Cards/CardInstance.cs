@@ -1,21 +1,38 @@
-using System.Diagnostics;
 using UnityEngine;
 
-public class CardInstance {
+public class CardInstance : MonoBehaviour
+{
     public BaseCard data;
     public bool corrupted;
 
-    public CardInstance(BaseCard baseData) {
-        data = baseData;
-        corrupted = false;
+    private CardUI cardUI;
+
+    void Awake()
+    {
+        cardUI = GetComponent<CardUI>();
     }
 
-    public void UseCard() {
-        if (!corrupted) {
-            data.ExecuteEffect();
+    public void Initialize(BaseCard baseData)
+    {
+        data = baseData;
+        corrupted = false;
+
+        if (cardUI != null)
+        {
+            cardUI.ConfigureCard(this);
         }
-        else {
-            UnityEngine.Debug.Log($"Carta {data.cardName} está corrompida e causa um efeito negativo!");
+    }
+
+    public void UseCard()
+    {
+        if (!corrupted && data != null)
+        {
+            data.ExecuteEffect();
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log($"Carta {data.cardName} está corrompida e causa um efeito negativo!");
         }
     }
 }

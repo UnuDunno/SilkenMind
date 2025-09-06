@@ -1,88 +1,91 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class MapNavigator : MonoBehaviour, IScrollHandler, IDragHandler, IBeginDragHandler
+public class MapNavigator : MonoBehaviour
 {
-    [Header("Referências")]
     public RectTransform content;
     public RectTransform viewport;
 
-    [Header("Configurações de Zoom")]
-    public float zoomSpeed = 2f;
-    public float zoomSmoothness = 10f;
-    public float minScale = 0.5f;
-    public float maxScale = 2.5f;
+    public float dragSpeed = 1.0f;
 
-    [Header("Configurações de Arrasto")]
-    public float dragSensitivity = 1f;
-    public float moveSmoothness = 10f;
+    public float zoomSpeed = 8f;
+    public float zoomStep = 0.2f;
+    public float minZoom = 0.5f;
+    public float maxZoom = 2.5f;
 
-    private Vector3 targetScale;
-    private Vector2 targetPosition;
-    private Vector2 lastMousePos;
+    private Vector3 dragOrigin;
+    private bool isDragging = false;
+
+    private float targetZoom = 1f;
+    private Camera uiCamera;
 
     void Start()
     {
-        targetScale = content.localScale;
-        targetPosition = content.anchoredPosition;
+        if (content == null)
+        {
+            enabled = false;
+            return;
+        }
+
+        if (viewport == null)
+        {
+            viewport = transform as RectTransform;
+        }
+
+        uiCamera = Camera.main;
+        targetZoom = content.localScale.x;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        HandleDrag();
+        HandleZoom();
+    }
+
+    private void HandleDrag()
+    {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            lastMousePos = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            Vector2 mouseDelta = (Vector2)Input.mousePosition - lastMousePos;
-            targetPosition += mouseDelta * dragSensitivity;
-            lastMousePos = Input.mousePosition;
+            dragOrigin = Input.mousePosition;
+            isDragging = true;
         }
 
-        float scroll = Input.mouseScrollDelta.y;
+        if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+
+        if (isDragging)
+        {
+            Vector3 diff = Input.mousePosition - dragOrigin;
+            dragOrigin = Input.mousePosition;
+            content.anchoredPosition += (Vector2)diff * dragSpeed;
+        }
+    }
+
+    private void HandleZoom()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
         if (Mathf.Abs(scroll) > 0.01f)
         {
-            Vector2 localMousePos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(content, Input.mousePosition, null, out localMousePos);
+            Vector2 mousePos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, Input.mousePosition, uiCamera, out mousePos);
 
-            float zoomDelta = scroll * zoomSpeed * Time.deltaTime;
-            float newScale = Mathf.Clamp(targetScale.x + zoomDelta, minScale, maxScale);
+            Vector3 beforeZoom = content.InverseTransformPoint(uiCamera.ScreenToWorldPoint(Input.mousePosition));
 
-            if (!Mathf.Approximately(newScale, targetPosition.x))
-            {
-                Vector2 pivotOffset = localMousePos * (newScale / targetScale.x - 1f);
-                targetPosition -= pivotOffset;
+            targetZoom = Mathf.Clamp(targetZoom + scroll * zoomStep, minZoom, maxZoom);
 
-                targetScale = new Vector3(newScale, newScale, 1);
-            }
+            content.localScale = Vector3.Lerp(content.localScale, Vector3.one * targetZoom, Time.deltaTime * (zoomSpeed * 60));
+
+            Vector3 afterZoom = content.InverseTransformPoint(uiCamera.ScreenToWorldPoint(Input.mousePosition));
+            Vector3 offset = afterZoom - beforeZoom;
+
+            content.localPosition -= offset;
         }
-
-        content.localScale = Vector3.Lerp(content.localScale, targetScale, Time.deltaTime * zoomSmoothness);
-        content.anchoredPosition = Vector2.Lerp(content.anchoredPosition, targetPosition, Time.deltaTime * moveSmoothness);
-    }
-
-    public void OnScroll(PointerEventData eventData)
-    {
-        float scroll = eventData.scrollDelta.y;
-        float newScale = Mathf.Clamp(targetScale.x + scroll * zoomSpeed, minScale, maxScale);
-
-        targetScale = new Vector3(newScale, newScale, 1);
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        lastMousePos = eventData.position;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        Vector2 delta = (eventData.position - lastMousePos) * dragSensitivity;
-
-        targetPosition += delta;
-        lastMousePos = eventData.position;
+        else
+        {
+            content.localScale = Vector3.Lerp(content.localScale, Vector3.one * targetZoom, Time.deltaTime * (zoomSpeed * 60));
+        }
     }
 }
