@@ -27,8 +27,7 @@ public class CardInstance : MonoBehaviour
     {
         if (!corrupted && data != null)
         {
-            data.ExecuteEffect();
-            Destroy(gameObject);
+            if(data.ExecuteEffect()) Destroy(gameObject);
         }
         else
         {

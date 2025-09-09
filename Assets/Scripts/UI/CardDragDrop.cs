@@ -31,10 +31,11 @@ public class CardDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        rectTransform.position = originalPosition;
         
-        if (eventData.pointerEnter == null || eventData.pointerEnter.GetComponent<DropZone>() == null)
-        {
-            rectTransform.position = originalPosition;
-        }
+        // if (eventData.pointerEnter == null || eventData.pointerEnter.GetComponent<DropZone>() == null)
+        // {
+        //     rectTransform.position = originalPosition;
+        // }
     }
 }

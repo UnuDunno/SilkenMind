@@ -9,8 +9,6 @@ public class CombatNodeHandler : MonoBehaviour
 
     public void Initiate(Node node)
     {
-        Debug.Log("⚔️ Iniciando combate!");
-
         combatPanel.SetActive(true);
 
         CombatManager.instance.StartCombat();

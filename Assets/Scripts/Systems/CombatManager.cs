@@ -9,6 +9,7 @@ public class CombatManager : MonoBehaviour
 
     public GameObject combatPanel;
     public TextMeshProUGUI playerHPText;
+    public TextMeshProUGUI playerFearText;
     public TextMeshProUGUI playerDefenseText;
     public TextMeshProUGUI enemyHPText;
     public Button endOfTurnButton;
@@ -17,6 +18,8 @@ public class CombatManager : MonoBehaviour
 
     public int playerMaxHP = 20;
     private int playerHP;
+    public int playerMaxFear = 5;
+    public int playerFear;
     public int playerDefense = 0;
 
     public int enemyMaxHP = 15;
@@ -56,6 +59,8 @@ public class CombatManager : MonoBehaviour
         {
             progress = FindObjectOfType<PlayerMapProgress>();
         }
+
+        playerHP = playerMaxHP;
     }
 
     public void StartCombat()
@@ -67,8 +72,10 @@ public class CombatManager : MonoBehaviour
             cardManager.BuyCards(initialHand);
         }
 
-        playerHP = playerMaxHP;
+        playerHP = (playerHP > playerMaxHP) ? playerMaxHP : playerHP;
         enemyHP = enemyMaxHP;
+        playerFear = playerMaxFear;
+        playerDefense = 0;
 
         UpdateUI();
     }
@@ -95,10 +102,13 @@ public class CombatManager : MonoBehaviour
         UpdateUI();
     }
 
-    public void HealPlayer(int heal)
+    public void HealPlayer(int heal, bool update = true)
     {
         playerHP += heal;
-        UpdateUI();
+
+        if (playerHP > playerMaxHP) playerHP = playerMaxHP;
+
+        if (update) UpdateUI();
     }
 
     public void BuyCards(int drawQuantity)
@@ -110,6 +120,15 @@ public class CombatManager : MonoBehaviour
         }
 
         cardManager.BuyCards(drawQuantity);
+    }
+
+    public bool ApplyFear(int value)
+    {
+        if (value > playerFear) return false;
+
+        playerFear -= value;
+
+        return true;
     }
 
     public void EndPlayerTurn()
@@ -125,10 +144,11 @@ public class CombatManager : MonoBehaviour
         }
 
         playerDefense = 0;
+        playerFear = playerMaxFear;
 
         List<CardInstance> hand = cardManager.hand;
         if (hand.Count > 0)
-        {    
+        {
             List<int> toRemove = new List<int>();
             for (int i = hand.Count - 1; i >= 0; i--)
             {
@@ -183,12 +203,17 @@ public class CombatManager : MonoBehaviour
     {
         if (playerHPText != null)
         {
-            playerHPText.text = $"Jogador: {playerHP}/{playerMaxHP}";
+            playerHPText.text = $"HP: {playerHP}/{playerMaxHP}";
         }
 
         if (playerDefenseText != null)
         {
             playerDefenseText.text = $"Defesa: {playerDefense}";
+        }
+
+        if (playerFearText != null)
+        {
+            playerFearText.text = $"Medo: {playerFear}/{playerMaxFear}";
         }
 
         if (enemyHPText != null)

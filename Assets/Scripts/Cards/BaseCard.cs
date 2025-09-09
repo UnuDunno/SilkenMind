@@ -11,17 +11,19 @@ public class BaseCard : ScriptableObject {
     public int fearValue;
     public int value;
 
-    public virtual void ExecuteEffect()
+    public virtual bool ExecuteEffect()
     {
         Debug.Log($"[DEBUG] {cardName} usada. Tipo: {type}, Valor: {fearValue}");
 
-        CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
+        CombatManager combatManager = FindObjectOfType<CombatManager>();
 
         if (combatManager == null)
         {
             Debug.LogWarning("CombatManager não encontrado. Efeito não aplicado.");
-            return;
+            return false;
         }
+
+        if (!combatManager.ApplyFear(fearValue)) return false;
 
         switch (type)
         {
@@ -41,5 +43,7 @@ public class BaseCard : ScriptableObject {
                 Debug.LogWarning("Tipo de carta não reconhecido.");
                 break;
         }
+
+        return true;
     }
 }

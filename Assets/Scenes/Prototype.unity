@@ -471,11 +471,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatPanel: {fileID: 1800098204}
   playerHPText: {fileID: 247455080}
+  playerFearText: {fileID: 1869158769}
   playerDefenseText: {fileID: 496406378}
   enemyHPText: {fileID: 933752591}
   endOfTurnButton: {fileID: 984638013}
   initialHand: 5
   playerMaxHP: 20
+  playerMaxFear: 5
+  playerFear: 0
   playerDefense: 0
   enemyMaxHP: 15
   enemyDamage: 2
@@ -1309,6 +1312,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3611945533641385366, guid: 5636ef3c9d26aa842a075b4899662105, type: 3}
   m_PrefabInstance: {fileID: 841229259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1869158769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3311592950516585173, guid: 5636ef3c9d26aa842a075b4899662105, type: 3}
+  m_PrefabInstance: {fileID: 841229259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1896190582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restPanel: {fileID: 284918695}
+  healButton: {fileID: 5935907679880592715}
+  increaseMaxHealthButton: {fileID: 5935907679880592714}
 --- !u!1 &2107394319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1601,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be66b72867519f49be2544470e694a4, type: 3}
+--- !u!114 &5935907679880592714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 550645259740369670, guid: 5be66b72867519f49be2544470e694a4, type: 3}
+  m_PrefabInstance: {fileID: 5935907679880592713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5935907679880592715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3838593882444944875, guid: 5be66b72867519f49be2544470e694a4, type: 3}
+  m_PrefabInstance: {fileID: 5935907679880592713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7528643126411951742
 PrefabInstance:
   m_ObjectHideFlags: 0
