@@ -23,12 +23,12 @@ public class CardManager : MonoBehaviour
 
     private void CreateInitialDeck()
     {
-        BaseCard bloqueio = Resources.Load<BaseCard>("Cards/Bloqueio");
-        BaseCard golpe = Resources.Load<BaseCard>("Cards/Golpe");
-        BaseCard investida = Resources.Load<BaseCard>("Cards/Investida");
-        BaseCard olhosDeCacador = Resources.Load<BaseCard>("Cards/Olhos de Caçador");
-        BaseCard teiaDaVida = Resources.Load<BaseCard>("Cards/Teia da Vida");
-        BaseCard teiaProtetora = Resources.Load<BaseCard>("Cards/Teia Protetora");
+        BaseCard bloqueio = Resources.Load<BaseCard>("Cards/MainDeck/Bloqueio");
+        BaseCard golpe = Resources.Load<BaseCard>("Cards/MainDeck/Golpe");
+        BaseCard investida = Resources.Load<BaseCard>("Cards/MainDeck/Investida");
+        BaseCard olhosDeCacador = Resources.Load<BaseCard>("Cards/MainDeck/Olhos de Caçador");
+        BaseCard teiaDaVida = Resources.Load<BaseCard>("Cards/MainDeck/Teia da Vida");
+        BaseCard teiaProtetora = Resources.Load<BaseCard>("Cards/MainDeck/Teia Protetora");
 
         if (golpe == null || investida == null || bloqueio == null || olhosDeCacador == null || teiaProtetora == null || teiaDaVida == null)
         {

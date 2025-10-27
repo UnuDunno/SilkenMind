@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Name: Mordida Venenosa
+  m_EditorClassIdentifier: 
+  cardName: Mordida Venenosa
+  description: Causa 6 de dano
+  image: {fileID: 21300000, guid: 94aa5df429f8ee842b2c061ffe0c3385, type: 3}
+  type: 0
+  fearValue: 2
+  value: 6

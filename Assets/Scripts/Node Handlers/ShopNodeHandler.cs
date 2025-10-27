@@ -1,22 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ShopNodeHandler : MonoBehaviour
 {
-    public GameObject shopPanel;
+    public ShopPanel shopPanel;
+
+    void Start()
+    {
+        shopPanel = FindObjectOfType<ShopPanel>();
+    }
 
     public void Initiate(Node node)
     {
-        Debug.Log("💰 Loja aberta!");
+        if (shopPanel != null)
+        {
+            shopPanel.Open();
 
-        shopPanel.SetActive(true);
-    }
-
-    public void EndEvent()
-    {
-        shopPanel.SetActive(false);
-
-        FindObjectOfType<PlayerMapProgress>().EndCurrentEvent();
+            Debug.Log("Entrou na loja!");
+        }
+        else
+        {
+            Debug.LogWarning("ShopPanel não encontrado na cena.");
+        }
     }
 }

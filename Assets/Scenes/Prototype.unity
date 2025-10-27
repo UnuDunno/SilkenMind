@@ -430,11 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &507402249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 521793047656830623, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
-  m_PrefabInstance: {fileID: 7528643126411951742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &507402250 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1403254674832186158, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
@@ -541,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85be5715415d0949b06bd89c9141a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopPanel: {fileID: 507402249}
+  shopPanel: {fileID: 7528643126411951743}
 --- !u!1 &672153376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 521793047656830623, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1403254674832186158, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1721,6 +1720,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
+--- !u!114 &7528643126411951743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3798948375429703505, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
+  m_PrefabInstance: {fileID: 7528643126411951742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0df56dd0f0d6c4c85b83db56c41d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
