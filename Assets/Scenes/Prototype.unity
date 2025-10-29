@@ -536,7 +536,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85be5715415d0949b06bd89c9141a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopPanel: {fileID: 7528643126411951743}
+  shopPanel: {fileID: 1758714172}
+  shopPanelUI: {fileID: 7528643126411951743}
+  allCardsPool:
+  - {fileID: 11400000, guid: 2bacd8ce6cc1e744881e8a2125435461, type: 2}
+  - {fileID: 11400000, guid: 7d433299e08b55645a848e593e09eed6, type: 2}
+  - {fileID: 11400000, guid: 7c6700e551a551d41beb3b86bbd137aa, type: 2}
+  - {fileID: 11400000, guid: 478a0a3170c9b7146afdf44813609c90, type: 2}
+  - {fileID: 11400000, guid: d4b0badad94f94843a33bc88b885a310, type: 2}
+  - {fileID: 11400000, guid: 85d45ca41cbbe8d4a8fcf95eefb5d634, type: 2}
+  - {fileID: 11400000, guid: 2ab047eb7698f8847a5fdb3ac614de9f, type: 2}
+  - {fileID: 11400000, guid: 77518214a5ae7f7459a1787622f159a9, type: 2}
+  - {fileID: 11400000, guid: 00a5592b6dd497048ab250313675a61c, type: 2}
+  - {fileID: 11400000, guid: 53d7cd539642a3649a21c55fedb96458, type: 2}
+  itemsToSell: 3
+  baseCardPrice: 100
+  onShopClosed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150061802}
+        m_TargetAssemblyTypeName: PlayerMapProgress, Assembly-CSharp
+        m_MethodName: EndCurrentEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &672153376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1326,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventPanel: {fileID: 745886824}
+--- !u!1 &1758714172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 521793047656830623, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
+  m_PrefabInstance: {fileID: 7528643126411951742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800098204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8408517607822219895, guid: 5636ef3c9d26aa842a075b4899662105, type: 3}
@@ -1725,10 +1759,10 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3798948375429703505, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
   m_PrefabInstance: {fileID: 7528643126411951742}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1758714172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0df56dd0f0d6c4c85b83db56c41d2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e9e5381fd7b9a542a1158d2e7286051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

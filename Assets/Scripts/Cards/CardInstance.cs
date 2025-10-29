@@ -17,9 +17,18 @@ public class CardInstance : MonoBehaviour
         data = baseData;
         corrupted = false;
 
+        if(cardUI == null)
+        {
+            cardUI = GetComponent<CardUI>();
+        }
+
         if (cardUI != null)
         {
             cardUI.ConfigureCard(this);
+        }
+        else
+        {
+            Debug.LogError($"Falha ao encontrar o componente CardUI no prefab da carta: {baseData.cardName}");
         }
     }
 
