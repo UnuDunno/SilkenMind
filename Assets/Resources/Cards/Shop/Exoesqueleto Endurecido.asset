@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c4c3dc8f51bfb94ca5b06f7c5652971, type: 3}
   m_Name: Exoesqueleto Endurecido
   m_EditorClassIdentifier: 
   cardName: Exoesqueleto Endurecido
   description: Ganhe 6 de defesa
   image: {fileID: 21300000, guid: 5af7a8b9ee5a0b646994c955e35e2ab5, type: 3}
-  type: 1
   fearValue: 2
-  value: 6
+  defense: 6

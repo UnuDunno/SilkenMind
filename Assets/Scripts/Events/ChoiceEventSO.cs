@@ -31,7 +31,14 @@ public class ChoiceEventSO : BaseEventSO
                 Debug.Log($"Tomou {value} de dano");
                 break;
             case PunishmentType.LoseCard:
-                Debug.Log("Perdeu uma carta aleatória");
+                if (PlayerDeckManager.Instance != null)
+                {
+                    PlayerDeckManager.Instance.RemoveRandomCard();
+                }
+                else
+                {
+                    Debug.LogError("PlayerDeckManager não encontrado. Não foi possível remover a carta");
+                }
                 break;
             case PunishmentType.None:
                 Debug.Log("Saiu ileso");

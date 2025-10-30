@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: 34109fecaaca1464bb78915cf2cec309, type: 3}
   m_Name: "Reflexos Aracn\xEDdeos"
   m_EditorClassIdentifier: 
   cardName: "Reflexos Aracn\xEDdeos"
   description: Ganhe 4 de defesa
   image: {fileID: 21300000, guid: 183f3baba5b08c349a54fc80fd919da0, type: 3}
-  type: 1
   fearValue: 1
-  value: 4
+  defense: 4

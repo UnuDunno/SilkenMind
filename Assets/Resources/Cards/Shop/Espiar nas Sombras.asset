@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: a8323e41128db7f458e29a14b63e00a0, type: 3}
   m_Name: Espiar nas Sombras
   m_EditorClassIdentifier: 
   cardName: Espiar nas Sombras
   description: Compre 3 cartas
   image: {fileID: 21300000, guid: 1caf7d5293c0bc441a299b37d514d06d, type: 3}
-  type: 3
   fearValue: 2
-  value: 3
+  draw: 3

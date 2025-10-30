@@ -47,7 +47,8 @@ public class RestNodeHandler : MonoBehaviour
     {
         if (combatManager == null) return;
 
-        combatManager.HealPlayer(combatManager.playerMaxHP);
+        // combatManager.HealPlayer(combatManager.playerMaxHP);
+        PlayerStats.Instance.Heal(PlayerStats.Instance.maxHealth);
 
         EndEvent();
     }
@@ -56,8 +57,9 @@ public class RestNodeHandler : MonoBehaviour
     {
         if (combatManager == null) return;
 
-        combatManager.playerMaxHP += maxHealthIncrease;
-        combatManager.HealPlayer(maxHealthIncrease);
+        // combatManager.playerMaxHP += maxHealthIncrease;
+        // combatManager.HealPlayer(maxHealthIncrease);
+        PlayerStats.Instance.IncreaseMaxHealth(maxHealthIncrease);
 
         EndEvent();
     }

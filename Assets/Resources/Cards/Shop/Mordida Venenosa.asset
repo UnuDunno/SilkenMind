@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: 0472eb98289fcdf40b66e6695887a5bc, type: 3}
   m_Name: Mordida Venenosa
   m_EditorClassIdentifier: 
   cardName: Mordida Venenosa
-  description: Causa 6 de dano
+  description: Causa 9 de dano
   image: {fileID: 21300000, guid: 94aa5df429f8ee842b2c061ffe0c3385, type: 3}
-  type: 0
   fearValue: 2
-  value: 6
+  damage: 9

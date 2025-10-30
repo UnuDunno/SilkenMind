@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bc805d28954d6943bc53b1bad342f74, type: 3}
   m_Name: Investida Sombria
   m_EditorClassIdentifier: 
   cardName: Investida Sombria
   description: Cause 12 de dano
   image: {fileID: 21300000, guid: baa495237741587438b74a4ea8846fd3, type: 3}
-  type: 0
   fearValue: 3
-  value: 12
+  damage: 12

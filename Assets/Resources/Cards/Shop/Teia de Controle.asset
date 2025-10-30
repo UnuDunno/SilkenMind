@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9463670501a318d4588d908a4dd50143, type: 3}
+  m_Script: {fileID: 11500000, guid: 070afda213e09a445a99279cbd416e50, type: 3}
   m_Name: Teia de Controle
   m_EditorClassIdentifier: 
   cardName: Teia de Controle
   description: "Anula o pr\xF3ximo dano recebido"
   image: {fileID: 21300000, guid: 0eb05523e7201d5488c31195fb903b79, type: 3}
-  type: 1
   fearValue: 6
-  value: 9999
+  defense: 999999

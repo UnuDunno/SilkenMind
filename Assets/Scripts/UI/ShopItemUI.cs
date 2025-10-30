@@ -111,6 +111,15 @@ public class ShopItemUI : MonoBehaviour
 
             MarkAsSold();
 
+            if (PlayerDeckManager.Instance != null)
+            {
+                PlayerDeckManager.Instance.AddCardToDeck(currentItem.card);
+            }
+            else
+            {
+                Debug.LogError("PlayerDeckManager não encontrado. Não foi possível adicionar a carta ao deck");
+            }
+
             Debug.LogWarning($"Carta adicionada ao Deck: {currentItem.card.name}");
         }
         else
