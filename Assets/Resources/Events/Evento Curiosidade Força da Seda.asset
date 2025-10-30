@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b5d5b2abfe74e4ba450e9505448f5c, type: 3}
+  m_Name: "Evento Curiosidade For\xE7a da Seda"
+  m_EditorClassIdentifier: 
+  eventTitle: "Mais Forte que A\xE7o"
+  eventDescription: "Fio a fio, a seda de uma aranha (especificamente a 'seda de
+    reboque') \xE9 considerada um dos materiais mais fortes do planeta, com uma resist\xEAncia
+    \xE0 tra\xE7\xE3o maior que a do a\xE7o e uma elasticidade incr\xEDvel. Cientistas
+    ainda tentam replic\xE1-la artificialmente."
+  eventImage: {fileID: 0}
+  reward: 1
+  rewardAmount: 3

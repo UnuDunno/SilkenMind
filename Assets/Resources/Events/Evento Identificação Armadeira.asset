@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d886876a8dbab0419d8801aa0c21945, type: 3}
+  m_Name: "Evento Identifica\xE7\xE3o Armadeira"
+  m_EditorClassIdentifier: 
+  eventTitle: "Identifique a Esp\xE9cie"
+  eventDescription: "Voc\xEA encontra uma aranha grande e marrom em sua garagem,
+    perto de algumas caixas. Ela ergue as patas dianteiras quando voc\xEA se aproxima,
+    revelando listras escuras na parte inferior."
+  eventImage: {fileID: 0}
+  questionText: "Baseado na postura defensiva, esta pode ser uma Aranha-Armadeira.
+    Ela \xE9 perigosa?"
+  option1Text: "Sim, \xE9 perigosa e deve ser evitada."
+  option1IsCorrect: 1
+  option2Text: "N\xE3o, est\xE1 apenas se exibindo."
+  option2IsCorrect: 0
+  correctOutcomeText: "Correto! A postura defensiva \xE9 um aviso claro. As Armadeiras
+    s\xE3o neurot\xF3xicas e devem ser tratadas com extremo cuidado. Voc\xEA ganha
+    uma recompensa por seu conhecimento."
+  correctReward: 0
+  correctRewardAmount: 100
+  incorrectOutcomeText: "Cuidado! Na verdade, esta \xE9 a postura cl\xE1ssica da
+    Aranha-Armadeira, uma das mais venenosas. Aprender a reconhecer seus avisos \xE9
+    o primeiro passo para a seguran\xE7a."

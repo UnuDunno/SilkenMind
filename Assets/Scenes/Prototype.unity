@@ -1326,6 +1326,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventPanel: {fileID: 745886824}
+  eventPool:
+  - {fileID: 11400000, guid: 3c8174e26b9dfd642bf8f953541f89d9, type: 2}
+  - {fileID: 11400000, guid: 8cd81fce468c9b443a226848e9c575e3, type: 2}
+  - {fileID: 11400000, guid: 1e935987f2eeea147a9be07f7b55ce5e, type: 2}
+  - {fileID: 11400000, guid: 9670f5698e7959d4784dd3afc587379e, type: 2}
+  - {fileID: 11400000, guid: d5c8dd5795791734d8627c64029969bb, type: 2}
+  - {fileID: 11400000, guid: 9bc19ba298b5d244ca7d4c0677dadaf5, type: 2}
+  onEventEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150061802}
+        m_TargetAssemblyTypeName: PlayerMapProgress, Assembly-CSharp
+        m_MethodName: EndCurrentEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1758714172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 521793047656830623, guid: ad8725c46f713d846930ff3f4dfd988c, type: 3}
@@ -1442,6 +1464,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109365360}
     m_Modifications:
+    - target: {fileID: 7153223102106588952, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153223102106588952, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153223102106588952, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153223102106588952, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7437478582939886583, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1525,6 +1563,10 @@ PrefabInstance:
     - target: {fileID: 7547438270525445480, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
       propertyPath: m_Name
       value: EventPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547438270525445480, guid: 4154cd672136c6440a95e77ac6be1c2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
