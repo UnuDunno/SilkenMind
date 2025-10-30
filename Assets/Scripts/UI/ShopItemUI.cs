@@ -12,6 +12,29 @@ public class ShopItemUI : MonoBehaviour
     private ShopItem currentItem;
     private bool isSold = false;
 
+    public void Onable()
+    {
+        if (PlayerWallet.Instance != null)
+        {
+            PlayerWallet.Instance.onGoldChanged.AddListener(OnPlayerGoldChanged);
+        }
+
+        CheckCanAfford();
+    }
+
+    public void Osable()
+    {
+        if (PlayerWallet.Instance != null)
+        {
+            PlayerWallet.Instance.onGoldChanged.RemoveListener(OnPlayerGoldChanged);
+        }
+    }
+    
+    public void OnPlayerGoldChanged(int newGoldAmount)
+    {
+        CheckCanAfford();
+    }
+
     public void Setup(ShopItem item)
     {
         currentItem = item;
@@ -58,13 +81,42 @@ public class ShopItemUI : MonoBehaviour
 
             return;
         }
+
+        if (PlayerWallet.Instance != null)
+        {
+            int playerGold = PlayerWallet.Instance.GetCurrentGold();
+            bool canAfford = playerGold >= currentItem.price;
+
+            buyButton.interactable = canAfford;
+
+            priceText.color = canAfford ? Color.white : Color.red;
+        }
+        else
+        {
+            buyButton.interactable = false;
+        }
     }
 
     private void TryBuyItem()
     {
         if (isSold) return;
 
-        MarkAsSold();
+        if (PlayerWallet.Instance == null) return;
+
+        bool purchaseSuccessful = PlayerWallet.Instance.TrySpendGold(currentItem.price);
+
+        if (purchaseSuccessful)
+        {
+            Debug.Log($"Comprou {currentItem.card.name} por {currentItem.price}");
+
+            MarkAsSold();
+
+            Debug.LogWarning($"Carta adicionada ao Deck: {currentItem.card.name}");
+        }
+        else
+        {
+            Debug.Log("Dinheiro insuficiente");
+        }
     }
 
     private void MarkAsSold()

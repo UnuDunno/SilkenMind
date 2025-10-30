@@ -26,6 +26,8 @@ public class CombatManager : MonoBehaviour
     private int enemyHP;
     public int enemyDamage = 2;
 
+    public int goldReward = 50;
+
     private CardManager cardManager;
     private PlayerMapProgress progress;
 
@@ -180,6 +182,11 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Vitória!");
         combatPanel.SetActive(false);
         cardManager.DiscardHand();
+
+        if(PlayerWallet.Instance != null)
+        {
+            PlayerWallet.Instance.AddGold(goldReward);
+        }
 
         if (progress != null)
         {

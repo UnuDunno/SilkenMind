@@ -33,6 +33,7 @@ public class IdentificationEventSO : BaseEventSO
             switch (correctReward)
             {
                 case RewardType.Gold:
+                    PlayerWallet.Instance.AddGold(correctRewardAmount);
                     break;
                 case RewardType.MaxHealth:
                     break;

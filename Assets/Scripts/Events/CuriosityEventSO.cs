@@ -18,7 +18,7 @@ public class CuriosityEventSO : BaseEventSO
         switch(reward)
         {
             case RewardType.Gold:
-                Debug.Log($"Recompensa: +{rewardAmount} Ouro");
+                PlayerWallet.Instance.AddGold(rewardAmount);
                 break;
             case RewardType.MaxHealth:
                 Debug.Log($"Recompensa: +{rewardAmount} Vida Máxima");
