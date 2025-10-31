@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Picada Venenosa", menuName = "SilkenMind/Cards/Picada Venenosa")]
+[CreateAssetMenu(fileName = "Picada Venenosa", menuName = "Cards/Picada Venenosa")]
 public class PicadaVenenosa : BaseCard
 {
     public int damage = 12;

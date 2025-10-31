@@ -22,7 +22,7 @@ public class CombatEntity
         onBlockChanged = new UnityEvent<int>();
     }
 
-    public void TakeDamage(int damage)
+    public int TakeDamage(int damage)
     {
         int originalBlock = currentBlock;
 
@@ -32,6 +32,8 @@ public class CombatEntity
 
             currentBlock -= blockedDamage;
             damage -= blockedDamage;
+
+            damage = (damage < 0) ? 0 : damage;
         }
 
         if (damage > 0)
@@ -47,6 +49,8 @@ public class CombatEntity
         {
             onBlockChanged?.Invoke(currentBlock);
         }
+
+        return damage;
     }
 
     public void AddBlock(int amount)

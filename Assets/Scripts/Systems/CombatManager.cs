@@ -191,7 +191,7 @@ public class CombatManager : MonoBehaviour
 
         Debug.Log($"Inimigo ataca com {damage} de dano");
 
-        player.TakeDamage(damage);
+        damage = player.TakeDamage(damage);
         PlayerStats.Instance.TakeDamage(damage);
 
         if (player.currentHealth <= 0) ChangeState(CombatState.Defeat);

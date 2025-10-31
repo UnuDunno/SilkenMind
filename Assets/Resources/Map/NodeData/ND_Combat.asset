@@ -9,10 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c265d251c51f4bf49bc069ba1db80cfb, type: 3}
+  m_Script: {fileID: 11500000, guid: b4d17f0486228d24fb567af55c5a1f5e, type: 3}
   m_Name: ND_Combat
   m_EditorClassIdentifier: 
   nodeName: Combate
+  type: 0
   icon: {fileID: 21300000, guid: a59d6029d282ea148bf57966b0c2401e, type: 3}
-  color: {r: 0.6698113, g: 0.009478444, b: 0.009478444, a: 1}
   weight: 40
+  color: {r: 0.6698113, g: 0.009478444, b: 0.009478444, a: 1}
+  enemyToSpawn: {fileID: 11400000, guid: 6e715a7d743aa9048b6bbbe5ddeb9699, type: 2}
+  goldReward: 25
+  cardRewardPool:
+  - {fileID: 11400000, guid: 0c82e69057b534d44bb53f5e6cf85da7, type: 2}
+  - {fileID: 11400000, guid: 5f5f45eb738ae9f48a8051d74046c987, type: 2}

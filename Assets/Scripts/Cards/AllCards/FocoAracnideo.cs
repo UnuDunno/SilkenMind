@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Foco Aracnídeo", menuName = "SilkenMind/Cards/Foco Aracnídeo")]
+[CreateAssetMenu(fileName = "Foco Aracnídeo", menuName = "Cards/Foco Aracnídeo")]
 public class FocoAracnideo : BaseCard
 {
     public int fearGain = 2;

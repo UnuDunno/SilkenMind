@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NodeData", menuName = "Map/Node Data")]
 public class NodeData : ScriptableObject
 {
     public enum NodeType

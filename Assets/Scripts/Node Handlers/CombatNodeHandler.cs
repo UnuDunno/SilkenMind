@@ -7,10 +7,9 @@ public class CombatNodeHandler : MonoBehaviour
 {
     public GameObject combatPanel;
 
-    public EnemyData enemyToSpawn;
-
-    public int goldReward = 50;
-    public List<BaseCard> cardRewardPool;
+    private EnemyData currentEnemy;
+    private int currentGoldReward;
+    private List<BaseCard> currentCardPool;
 
     public UnityEvent onVictory;
     public UnityEvent onDefeat;
@@ -19,14 +18,34 @@ public class CombatNodeHandler : MonoBehaviour
     {
         Debug.Log("⚔️ CombatNodeHandler: Iniciando nó de combate!");
 
-        if (enemyToSpawn == null)
+        CombatNodeData combatNodeData = node.data as CombatNodeData;
+
+        if (combatNodeData == null)
         {
-            Debug.LogError("Nenhum Inimigo configurado neste nó");
+            Debug.LogError($"Os dados do nó '{node.name}' não são do tipo CombatNodeData");
+
+            onVictory.Invoke();
+
             return;
         }
+
+        currentEnemy = combatNodeData.enemyToSpawn;
+        currentGoldReward = combatNodeData.goldReward;
+        currentCardPool = combatNodeData.cardRewardPool;
+
+        if (currentEnemy == null)
+        {
+            Debug.LogError($"CombatNodeData '{combatNodeData.name}' não tem um inimigo (EnemyData) configurado");
+
+            onVictory.Invoke();
+
+            return;
+        }
+
         if (PlayerDeckManager.Instance == null || CombatManager.Instance == null || PlayerStats.Instance == null)
         {
-            Debug.LogError("Sistemas não encontrados");
+            Debug.LogError("Sistemas (DeckManager, CombatManager ou PlayerStats) não encontrados");
+
             return;
         }
 
@@ -34,22 +53,22 @@ public class CombatNodeHandler : MonoBehaviour
 
         combatPanel.SetActive(true);
 
-        CombatManager.Instance.StartCombat(playerDeck, enemyToSpawn, this);
+        CombatManager.Instance.StartCombat(playerDeck, currentEnemy, this);
     }
 
     public void HandleBattleVictory()
     {
         Debug.Log("NodeHandler: Vitória recebida. Dando recompensa");
 
-        PlayerWallet.Instance.AddGold(goldReward);
+        PlayerWallet.Instance.AddGold(currentGoldReward);
 
         int randIndex;
         BaseCard rewardCard;
-        if (cardRewardPool != null && cardRewardPool.Count > 0)
+        if (currentCardPool != null && currentCardPool.Count > 0)
         {
-            randIndex = Random.Range(0, cardRewardPool.Count);
+            randIndex = Random.Range(0, currentCardPool.Count);
 
-            rewardCard = cardRewardPool[randIndex];
+            rewardCard = currentCardPool[randIndex];
 
             PlayerDeckManager.Instance.AddCardToDeck(rewardCard);
         }

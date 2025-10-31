@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Retiro Estratégico", menuName = "SilkenMind/Cards/Retiro Estratégico")]
+[CreateAssetMenu(fileName = "Retiro Estratégico", menuName = "Cards/Retiro Estratégico")]
 public class RetiroEstrategico : BaseCard
 {
     public int block = 7;

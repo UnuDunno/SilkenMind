@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
-  m_Name: Aranha Pequena
+  m_Name: Boss Aranha Rainha
   m_EditorClassIdentifier: 
-  enemyName: Aranha Pequena
-  maxHealth: 20
-  simpleAttackDamage: 5
+  enemyName: Aranha Rainha
+  maxHealth: 150
+  simpleAttackDamage: 15
