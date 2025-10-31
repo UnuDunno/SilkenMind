@@ -90,6 +90,15 @@ public class PlayerStats : MonoBehaviour
         NotifyHealthChanged();
     }
 
+    public void IncreaseMaxFear(int amount)
+    {
+        if (amount <= 0) return;
+
+        maxFear += amount;
+
+        NotifyFearChanged();
+    }
+
     public void SetFear(int amount)
     {
         currentFear = amount;

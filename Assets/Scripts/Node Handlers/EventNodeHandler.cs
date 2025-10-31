@@ -8,8 +8,6 @@ public class EventNodeHandler : MonoBehaviour
     public GameObject eventPanel;
     private EventPanelUI eventPanelUI;
 
-    public List<BaseEventSO> eventPool;
-
     public UnityEvent onEventEnded;
 
     public void Initiate(Node node)
@@ -22,20 +20,35 @@ public class EventNodeHandler : MonoBehaviour
             if (eventPanelUI == null)
             {
                 Debug.LogError("EventPanel não tem o script EventPanelUI");
+
+                EndEvent();
+
                 return;
             }
         }
 
-        if (eventPool == null || eventPool.Count == 0)
+        EventNodeData eventNodeData = node.data as EventNodeData;
+
+        if (eventNodeData == null)
         {
-            Debug.LogError("Event Pool está vazio");
+            Debug.LogError($"Os dados do nó '{node.name}' não são do tipo EventNodeData");
+
             EndEvent();
 
             return;
         }
 
-        int randIndex = Random.Range(0, eventPool.Count);
-        BaseEventSO selectedEvent = eventPool[randIndex];
+        if (eventNodeData.nodeEventPool == null || eventNodeData.nodeEventPool.Count == 0)
+        {
+            Debug.LogError($"O 'Node Event Pool' do asset '{eventNodeData.name}' está vazio");
+
+            EndEvent();
+
+            return;
+        }
+
+        int randIndex = Random.Range(0, eventNodeData.nodeEventPool.Count);
+        BaseEventSO selectedEvent = eventNodeData.nodeEventPool[randIndex];
 
         eventPanelUI.Setup(selectedEvent, this);
         eventPanel.SetActive(true);

@@ -21,10 +21,10 @@ public class CuriosityEventSO : BaseEventSO
                 PlayerWallet.Instance.AddGold(rewardAmount);
                 break;
             case RewardType.MaxHealth:
-                Debug.Log($"Recompensa: +{rewardAmount} Vida Máxima");
+                PlayerStats.Instance.IncreaseMaxHealth(rewardAmount);
                 break;
             case RewardType.Fear:
-                Debug.Log($"Recompensa: +{rewardAmount} Recuso Medo");
+                PlayerStats.Instance.IncreaseMaxFear(rewardAmount);
                 break;
         }
     }

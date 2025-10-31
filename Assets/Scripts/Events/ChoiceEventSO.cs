@@ -28,7 +28,7 @@ public class ChoiceEventSO : BaseEventSO
         switch(punishment)
         {
             case PunishmentType.TakeDamage:
-                Debug.Log($"Tomou {value} de dano");
+                PlayerStats.Instance.TakeDamage(value);
                 break;
             case PunishmentType.LoseCard:
                 if (PlayerDeckManager.Instance != null)

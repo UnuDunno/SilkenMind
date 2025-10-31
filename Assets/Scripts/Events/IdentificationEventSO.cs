@@ -36,8 +36,10 @@ public class IdentificationEventSO : BaseEventSO
                     PlayerWallet.Instance.AddGold(correctRewardAmount);
                     break;
                 case RewardType.MaxHealth:
+                    PlayerStats.Instance.IncreaseMaxHealth(correctRewardAmount);
                     break;
                 case RewardType.Fear:
+                    PlayerStats.Instance.IncreaseMaxFear(correctRewardAmount);
                     break;
             }
         }
