@@ -38,6 +38,8 @@ public class EventPanelUI : MonoBehaviour
 
     void Awake()
     {
+        RemoveListeners();
+
         curiosityContinueButton.onClick.AddListener(OnCuriosityContinue);
         outcomeContinueButton.onClick.AddListener(CloseEvent);
 
@@ -46,6 +48,16 @@ public class EventPanelUI : MonoBehaviour
 
         idOption1Button.onClick.AddListener(() => OnIdentificationSelected(0));
         idOption2Button.onClick.AddListener(() => OnIdentificationSelected(1));
+    }
+
+    private void RemoveListeners()
+    {
+        curiosityContinueButton.onClick.RemoveAllListeners();
+        outcomeContinueButton.onClick.RemoveAllListeners();
+        choice1Button.onClick.RemoveAllListeners();
+        choice2Button.onClick.RemoveAllListeners();
+        idOption1Button.onClick.RemoveAllListeners();
+        idOption2Button.onClick.RemoveAllListeners();
     }
 
     public void Setup(BaseEventSO eventData, EventNodeHandler handler)

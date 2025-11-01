@@ -50,6 +50,8 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat(List<BaseCard> deck, EnemyData enemySO, CombatNodeHandler handler)
     {
+        StopAllCoroutines();
+
         Debug.Log("Iniciando combate");
 
         currentNodeHandler = handler;
@@ -73,7 +75,7 @@ public class CombatManager : MonoBehaviour
 
         enemyHealthUI = uiReferences.enemyHealthUI;
 
-        playerBlockUI = FindObjectOfType<BlockUI>();
+        playerBlockUI = uiReferences.playerBlockUI;
         enemyBlockUI = uiReferences.enemyBlockUI;
 
         endTurnButton.onClick.RemoveAllListeners();
@@ -327,24 +329,6 @@ public class CombatManager : MonoBehaviour
             drawPile[i] = drawPile[randomIndex];
             drawPile[randomIndex] = temp;
         }
-    }
-
-    private IEnumerator DiscardHand()
-    {
-        discardPile.AddRange(hand);
-        hand.Clear();
-
-        foreach (GameObject cardGO in handCardGameObjects)
-        {
-            if(cardGO != null)
-            {
-                Destroy(cardGO);
-                
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-
-        handCardGameObjects.Clear();
     }
     
     private void ClearHandAndPiles()

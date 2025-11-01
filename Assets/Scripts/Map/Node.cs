@@ -16,12 +16,16 @@ public class Node : MonoBehaviour
 
     private Color originalColor;
 
+    private PlayerMapProgress progress;
+
 
     void Awake()
     {
         if (background == null) background = GetComponent<Image>();
         if (button == null) button = GetComponent<Button>();
         if (canvasGroup == null) canvasGroup = GetComponent<CanvasGroup>();
+
+        progress = FindObjectOfType<PlayerMapProgress>();
 
         if (background != null)
         {
@@ -45,7 +49,6 @@ public class Node : MonoBehaviour
     {
         if (completed) return;
 
-        PlayerMapProgress progress = FindObjectOfType<PlayerMapProgress>();
         if (progress != null)
         {
             progress.SelectNode(this);
