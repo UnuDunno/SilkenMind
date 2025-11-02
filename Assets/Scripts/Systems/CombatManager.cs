@@ -34,6 +34,8 @@ public class CombatManager : MonoBehaviour
     private BlockUI playerBlockUI;
     private BlockUI enemyBlockUI;
 
+    private Image enemySpriteRenderer;
+
     public int initialHandSize = 5;
 
     private List<GameObject> handCardGameObjects = new List<GameObject>();
@@ -77,6 +79,8 @@ public class CombatManager : MonoBehaviour
 
         playerBlockUI = uiReferences.playerBlockUI;
         enemyBlockUI = uiReferences.enemyBlockUI;
+
+        enemySpriteRenderer = uiReferences.enemySpriteRenderer;
 
         endTurnButton.onClick.RemoveAllListeners();
         endTurnButton.onClick.AddListener(OnEndTurnButton);
@@ -140,13 +144,26 @@ public class CombatManager : MonoBehaviour
 
             playerBlockUI.UpdateBlock(player.currentBlock);
         }
-        
-        if(enemyBlockUI != null)
+
+        if (enemyBlockUI != null)
         {
             enemy.onBlockChanged.RemoveAllListeners();
             enemy.onBlockChanged.AddListener(enemyBlockUI.UpdateBlock);
 
             enemyBlockUI.UpdateBlock(enemy.currentBlock);
+        }
+        
+        if(enemySpriteRenderer != null)
+        {
+            if (enemyData.enemySprite != null)
+            {
+                enemySpriteRenderer.sprite = enemyData.enemySprite;
+                enemySpriteRenderer.gameObject.SetActive(true);
+            }
+            else
+            {
+                enemySpriteRenderer.gameObject.SetActive(false);
+            }
         }
 
         BuildDrawPile();
@@ -261,6 +278,8 @@ public class CombatManager : MonoBehaviour
     private void OnDefeatContinue()
     {
         currentNodeHandler.HandleBattleDefeat();
+
+        if (enemySpriteRenderer != null) enemySpriteRenderer.gameObject.SetActive(false);
     }
 
     public IEnumerator DrawCards(int amount)
