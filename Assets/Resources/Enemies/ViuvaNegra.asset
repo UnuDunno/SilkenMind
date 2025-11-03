@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
-  m_Name: Aranha Media
+  m_Name: ViuvaNegra
   m_EditorClassIdentifier: 
-  enemyName: "Aranha M\xE9dia"
-  maxHealth: 40
+  enemyName: Aranha
+  maxHealth: 50
   enemySprite: {fileID: 0}
-  possibleIntents:
-  - {fileID: 11400000, guid: ab1487080a5c8544186c052499131e24, type: 2}
-  - {fileID: 11400000, guid: aa1d02d087ad10c4f9615a4b623f8d35, type: 2}
+  possibleIntents: []

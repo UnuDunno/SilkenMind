@@ -29,7 +29,7 @@ public class CombatNodeHandler : MonoBehaviour
             return;
         }
 
-        currentEnemy = combatNodeData.enemyToSpawn;
+        currentEnemy = combatNodeData.enemiesToSpawn[Random.Range(0, combatNodeData.enemiesToSpawn.Count)];
         currentGoldReward = combatNodeData.goldReward;
         currentCardPool = combatNodeData.cardRewardPool;
 

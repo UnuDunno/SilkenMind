@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ND_Combate", menuName ="Map/Nó de Combate")]
 public class CombatNodeData : NodeData
 {
-    public EnemyData enemyToSpawn;
+    public List<EnemyData> enemiesToSpawn;
 
     public int goldReward = 50;
 
