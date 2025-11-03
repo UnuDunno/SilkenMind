@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
-    public int layers = 5;
-    public int nodesPerLayer = 8;
-    public float initialRadius = 620f;
-    public float radiusIncrement = 150f;
+    public int layers = 10;
+    public int nodesPerLayer = 12;
+    public float initialRadius = 2500f;
+    public float radiusIncrement = 250f;
 
     public GameObject nodePrefab;
     public GameObject edgePrefab;
