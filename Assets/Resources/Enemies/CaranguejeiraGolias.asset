@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
   m_Name: CaranguejeiraGolias
   m_EditorClassIdentifier: 
-  enemyName: Aranha
-  maxHealth: 50
-  enemySprite: {fileID: 0}
-  possibleIntents: []
+  enemyName: Caranguejeira Golias
+  maxHealth: 150
+  enemySprite: {fileID: 21300000, guid: 3848e421a092e5f41a708bee2f7fe383, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: 88be843da46739847915ee0fb7041432, type: 2}
+  - {fileID: 11400000, guid: 7aafc8fb7bd91ec4ba014cf06b241c43, type: 2}
+  - {fileID: 11400000, guid: 7859f1458cdd29746af0a8064459bda3, type: 2}

@@ -17,7 +17,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e5da668c6557abb47a17a303cf69943f, type: 3}
   weight: 10
   color: {r: 0.29491857, g: 0.029369887, b: 0.5660378, a: 1}
-  enemyToSpawn: {fileID: 11400000, guid: 021faf35d9c4d3945ae1ae664dbc43fd, type: 2}
+  enemiesToSpawn:
+  - {fileID: 11400000, guid: cf2391e15669e2441a0b532e78fe9d4c, type: 2}
+  - {fileID: 11400000, guid: d5c8bb4511a8e6d4aa0e21fb5a86b2ae, type: 2}
   goldReward: 100
   cardRewardPool:
   - {fileID: 11400000, guid: 4f87bfdf4245f404f89b6a4489961bbb, type: 2}

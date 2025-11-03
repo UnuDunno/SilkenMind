@@ -190,10 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886a6a993cfdb054a8561489bc1d2041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layers: 5
-  nodesPerLayer: 8
-  initialRadius: 850
-  radiusIncrement: 150
+  layers: 10
+  nodesPerLayer: 12
+  initialRadius: 2500
+  radiusIncrement: 250
   nodePrefab: {fileID: 4166223106204007234, guid: ad1b30156c5d0c64eab5b7c698811cde, type: 3}
   edgePrefab: {fileID: 5006288294437888308, guid: 7bc1a0c86f79d134ebb9b74042684244, type: 3}
   bossPrefab: {fileID: 4166223106204007234, guid: e5393f98ed20eab42b008443b65e1118, type: 3}

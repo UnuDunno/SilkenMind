@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
   m_Name: AranhaMarrom
   m_EditorClassIdentifier: 
-  enemyName: Aranha
-  maxHealth: 50
-  enemySprite: {fileID: 0}
-  possibleIntents: []
+  enemyName: Aranha Marrom
+  maxHealth: 40
+  enemySprite: {fileID: 21300000, guid: 9de86d39f8119cc43b8c3c30cba4ae8f, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: c96d85405cb290c4b8ba571a482c80a4, type: 2}
+  - {fileID: 11400000, guid: aa1d02d087ad10c4f9615a4b623f8d35, type: 2}
+  - {fileID: 11400000, guid: f69468e70f0aa9d4cb8e73a281127b73, type: 2}

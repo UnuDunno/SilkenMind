@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FastForward
   m_EditorClassIdentifier: 
   intentType: 0
-  intentName: Ataque
-  intentIcon: {fileID: 0}
-  attackDamage: 0
+  intentName: "Avan\xE7o Veloz"
+  intentIcon: {fileID: 21300000, guid: a59d6029d282ea148bf57966b0c2401e, type: 3}
+  attackDamage: 7
   blockAmount: 0
-  specialAbilityDescription: 
+  specialAbilityDescription: Ataque veloz e forte

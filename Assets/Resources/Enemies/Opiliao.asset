@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
   m_Name: Opiliao
   m_EditorClassIdentifier: 
-  enemyName: Aranha
-  maxHealth: 50
-  enemySprite: {fileID: 0}
-  possibleIntents: []
+  enemyName: "Opili\xE3o Guardi\xE3o"
+  maxHealth: 25
+  enemySprite: {fileID: 21300000, guid: 06d6f9f4fd994ca43a6e658a55cc8e1d, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: ab1487080a5c8544186c052499131e24, type: 2}
+  - {fileID: 11400000, guid: aa1d02d087ad10c4f9615a4b623f8d35, type: 2}

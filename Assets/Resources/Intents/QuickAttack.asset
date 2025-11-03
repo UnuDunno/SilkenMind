@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: QuickAttack
   m_EditorClassIdentifier: 
   intentType: 0
-  intentName: Ataque
-  intentIcon: {fileID: 0}
-  attackDamage: 0
+  intentName: "Ataque R\xE1pido"
+  intentIcon: {fileID: 21300000, guid: a59d6029d282ea148bf57966b0c2401e, type: 3}
+  attackDamage: 3
   blockAmount: 0
-  specialAbilityDescription: 
+  specialAbilityDescription: "Um ataque r\xE1pido, por\xE9m n\xE3o muito forte"

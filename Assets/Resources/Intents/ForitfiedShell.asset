@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ForitfiedShell
   m_EditorClassIdentifier: 
   intentType: 1
-  intentName: Ataque
-  intentIcon: {fileID: 0}
+  intentName: Fortificar Casco
+  intentIcon: {fileID: 21300000, guid: 1815ea71c4e799e45b0db8899c240c4a, type: 3}
   attackDamage: 0
-  blockAmount: 0
+  blockAmount: 10
   specialAbilityDescription: 

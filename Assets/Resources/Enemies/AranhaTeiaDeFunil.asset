@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e075f67c4d6474448b05b737b62b7a48, type: 3}
   m_Name: AranhaTeiaDeFunil
   m_EditorClassIdentifier: 
-  enemyName: Aranha
-  maxHealth: 50
-  enemySprite: {fileID: 0}
-  possibleIntents: []
+  enemyName: Aranha Teia-de-Funil
+  maxHealth: 130
+  enemySprite: {fileID: 21300000, guid: 80659fa7cdf6afc4aa7243fa5d36e789, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: 99465121d6ea6a94481e6711200f1f83, type: 2}
+  - {fileID: 11400000, guid: ca04febead640e74cb5d28cb41203c31, type: 2}
+  - {fileID: 11400000, guid: cbeafdbf7066ef94182d2b6df6e4316a, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec806d78db6c6b439fd2c1c01b3b8db, type: 3}
   m_Name: RobustShell
   m_EditorClassIdentifier: 
-  intentType: 0
-  intentName: Ataque
-  intentIcon: {fileID: 0}
+  intentType: 1
+  intentName: Casco Robusto
+  intentIcon: {fileID: 21300000, guid: 1815ea71c4e799e45b0db8899c240c4a, type: 3}
   attackDamage: 0
-  blockAmount: 0
-  specialAbilityDescription: 
+  blockAmount: 8
+  specialAbilityDescription: "Utiliza o casco como prote\xE7\xE3o"

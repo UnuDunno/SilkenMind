@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: AranhaArmadeira
   m_EditorClassIdentifier: 
   enemyName: Aranha Armadeira
-  maxHealth: 0
-  enemySprite: {fileID: 0}
-  possibleIntents: []
+  maxHealth: 70
+  enemySprite: {fileID: 21300000, guid: ef3dc6fc643db9446bfd8130016d87f9, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: 9ef66e9969213bd46a8e49a147f463c6, type: 2}
+  - {fileID: 11400000, guid: 62e30cd80c19fdc41aca9b54900ac77a, type: 2}
+  - {fileID: 11400000, guid: f69468e70f0aa9d4cb8e73a281127b73, type: 2}
