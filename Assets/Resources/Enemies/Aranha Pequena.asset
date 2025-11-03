@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Aranha Pequena
   maxHealth: 20
-  simpleAttackDamage: 5
+  enemySprite: {fileID: 21300000, guid: 0784322015f69dd4fb5abecd88e15c2c, type: 3}
+  possibleIntents:
+  - {fileID: 11400000, guid: ab1487080a5c8544186c052499131e24, type: 2}
+  - {fileID: 11400000, guid: aa1d02d087ad10c4f9615a4b623f8d35, type: 2}

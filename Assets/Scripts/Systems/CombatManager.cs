@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CombatManager : MonoBehaviour
     private CombatEntity player;
     private EnemyData enemyData;
     private CombatEntity enemy;
+    private EnemyIntent nextEnemyIntent;
 
     private List<BaseCard> playerMasterDeck;
     private List<BaseCard> drawPile = new List<BaseCard>();
@@ -35,6 +37,10 @@ public class CombatManager : MonoBehaviour
     private BlockUI enemyBlockUI;
 
     private Image enemySpriteRenderer;
+
+    private GameObject enemyIntentDisplayParent;
+    private Image enemyIntentIcon;
+    private TextMeshProUGUI enemyIntentText;
 
     public int initialHandSize = 5;
 
@@ -81,6 +87,10 @@ public class CombatManager : MonoBehaviour
         enemyBlockUI = uiReferences.enemyBlockUI;
 
         enemySpriteRenderer = uiReferences.enemySpriteRenderer;
+
+        enemyIntentDisplayParent = uiReferences.enemyIntentDisplayParent;
+        enemyIntentIcon = uiReferences.enemyIntentIcon;
+        enemyIntentText = uiReferences.enemyIntentText;
 
         endTurnButton.onClick.RemoveAllListeners();
         endTurnButton.onClick.AddListener(OnEndTurnButton);
@@ -152,8 +162,8 @@ public class CombatManager : MonoBehaviour
 
             enemyBlockUI.UpdateBlock(enemy.currentBlock);
         }
-        
-        if(enemySpriteRenderer != null)
+
+        if (enemySpriteRenderer != null)
         {
             if (enemyData.enemySprite != null)
             {
@@ -165,6 +175,8 @@ public class CombatManager : MonoBehaviour
                 enemySpriteRenderer.gameObject.SetActive(false);
             }
         }
+
+        PredictEnemyIntent();
 
         BuildDrawPile();
 
@@ -202,16 +214,14 @@ public class CombatManager : MonoBehaviour
 
         enemy.ResetBlock();
 
+        if (nextEnemyIntent != null) ExecuteEnemyIntent(nextEnemyIntent);
+        else Debug.LogWarning($"{enemyData.enemyName} não tem intenção definida. Passando o turno");
+
+        PredictEnemyIntent();
+
         Debug.Log("Turno inimigo");
 
         yield return new WaitForSeconds(1.0f);
-
-        int damage = enemyData.simpleAttackDamage;
-
-        Debug.Log($"Inimigo ataca com {damage} de dano");
-
-        damage = player.TakeDamage(damage);
-        PlayerStats.Instance.TakeDamage(damage);
 
         if (player.currentHealth <= 0) ChangeState(CombatState.Defeat);
         else ChangeState(CombatState.PlayerTurn);
@@ -349,7 +359,7 @@ public class CombatManager : MonoBehaviour
             drawPile[randomIndex] = temp;
         }
     }
-    
+
     private void ClearHandAndPiles()
     {
         drawPile.Clear();
@@ -362,5 +372,69 @@ public class CombatManager : MonoBehaviour
         }
 
         handCardGameObjects.Clear();
+    }
+
+    private void PredictEnemyIntent()
+    {
+        if (enemyData == null || enemyData.possibleIntents == null || enemyData.possibleIntents.Count == 0)
+        {
+            Debug.LogWarning($"Inimigo '{enemyData.enemyName}' não tem intenções configuradas");
+            nextEnemyIntent = null;
+            return;
+        }
+
+        int randomIndex = Random.Range(0, enemyData.possibleIntents.Count);
+        nextEnemyIntent = enemyData.possibleIntents[randomIndex];
+
+        UpdateEnemyIntentUI(nextEnemyIntent);
+    }
+
+    private void UpdateEnemyIntentUI(EnemyIntent intent)
+    {
+        if (enemyIntentDisplayParent != null) enemyIntentDisplayParent.SetActive(true);
+
+        if (enemyIntentIcon != null)
+        {
+            enemyIntentIcon.sprite = intent.intentIcon;
+        }
+
+        if (enemyIntentText != null)
+        {
+            string intentValue = "";
+
+            switch (intent.intentType)
+            {
+                case IntentType.Attack:
+                    intentValue = intent.attackDamage.ToString();
+                    break;
+                case IntentType.Block:
+                    intentValue = intent.blockAmount.ToString();
+                    break;
+                case IntentType.Special:
+                    intentValue = "?";
+                    break;
+            }
+
+            enemyIntentText.text = intentValue;
+        }
+    }
+    
+    private void ExecuteEnemyIntent(EnemyIntent intent)
+    {
+        switch(intent.intentType)
+        {
+            case IntentType.Attack:
+                Debug.Log($"{enemyData.enemyName} ataca, causando {intent.attackDamage} de dano");
+                int damage = player.TakeDamage(intent.attackDamage);
+                PlayerStats.Instance.TakeDamage(damage);
+                break;
+            case IntentType.Block:
+                Debug.Log($"{enemyData.enemyName} se defende, ganhando {intent.blockAmount} de bloqueio");
+                enemy.AddBlock(intent.blockAmount);
+                break;
+            case IntentType.Special:
+                Debug.Log($"{enemyData.enemyName} usa uma habilidade especial: {intent.specialAbilityDescription}");
+                break;
+        }
     }
 }

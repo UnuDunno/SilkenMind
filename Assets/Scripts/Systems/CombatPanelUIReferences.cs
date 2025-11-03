@@ -10,7 +10,6 @@ public class CombatPanelUIReferences : MonoBehaviour
     public Button endTurnButton;
 
     public TextMeshProUGUI combatLogText;
-    public TextMeshProUGUI enemyIntentText;
 
     public GameObject victoryScreen;
     public GameObject defeatScreen;
@@ -23,4 +22,8 @@ public class CombatPanelUIReferences : MonoBehaviour
     public BlockUI enemyBlockUI;
 
     public Image enemySpriteRenderer;
+
+    public GameObject enemyIntentDisplayParent;
+    public Image enemyIntentIcon;
+    public TextMeshProUGUI enemyIntentText;
 }

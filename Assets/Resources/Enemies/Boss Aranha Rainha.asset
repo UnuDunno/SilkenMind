@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Aranha Rainha
   maxHealth: 150
-  simpleAttackDamage: 15
+  enemySprite: {fileID: 0}
+  possibleIntents:
+  - {fileID: 11400000, guid: ab1487080a5c8544186c052499131e24, type: 2}
+  - {fileID: 11400000, guid: aa1d02d087ad10c4f9615a4b623f8d35, type: 2}
